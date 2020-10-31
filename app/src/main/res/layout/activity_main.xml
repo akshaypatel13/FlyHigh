@@ -6,13 +6,66 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.transferwise.sequencelayout.SequenceLayout
+        android:id="@+id/sequenceLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:minWidth="250dp"
+        app:layout_constraintBottom_toTopOf="@+id/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/s1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:anchor="30 Nov"
+            app:subtitle="Flight 34789 - Air Canada - Halifax To Toronto"
+            app:title="Tickets Booked"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/s2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subtitle="Book a slot for Luggage Check-in"
+            app:anchor="Today"
+            app:title="Luggage Check-in" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/s3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subtitle="Book a slot for Security Check-in"
+            app:title="Security Check-in" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/s4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:anchor="2 Dec"
+            app:subtitle="Book a slot for On-boarding Process"
+            app:title="Flight On-boarding" />
+
+    </com.transferwise.sequencelayout.SequenceLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:text="Book a Slot"
+        android:textColor="@color/mi_text_color_primary_light"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sequenceLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
