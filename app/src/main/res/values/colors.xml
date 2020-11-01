@@ -3,4 +3,7 @@
     <color name="colorPrimary">#f0bb32</color>
     <color name="colorPrimaryDark">#b98b00</color>
     <color name="colorAccent">#0b96d1</color>
+    <color name="slid1">#ffffff</color>
+    <color name="slid2">#fa830f</color>
+    <color name="slid3">#d5d8de</color>
 </resources>

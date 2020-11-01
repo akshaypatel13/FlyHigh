@@ -1,7 +1,6 @@
 package com.example.flyhigh;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        next = (Button) findViewById(R.id.next);
+        next = findViewById(R.id.next);
         // check for first install and intro completed or not and save it in shared preference
         SharedPreferences sharedPref = getSharedPreferences("FirstLaunch", Context.MODE_PRIVATE);
         if (!sharedPref.getBoolean("INTRO_COMPLETED", false)) {
@@ -41,23 +40,19 @@ public class MainActivity extends AppCompatActivity {
                     1
             );
         }
-        steps[0] = (SequenceStep) findViewById(R.id.s1);
+        steps[0] = findViewById(R.id.s1);
         steps[0].setActive(true);
-        steps[1] = (SequenceStep) findViewById(R.id.s2);
-        steps[2] = (SequenceStep) findViewById(R.id.s3);
-        steps[3] = (SequenceStep) findViewById(R.id.s4);
+        steps[1] = findViewById(R.id.s2);
+        steps[2] = findViewById(R.id.s3);
+        steps[3] = findViewById(R.id.s4);
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<String> scheduledtimes = new ArrayList<String>();
-                Date d = Calendar.getInstance().getTime();
-                String dateSelected = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
-//                Toast.makeText(MainActivity.this, dateSelected, Toast.LENGTH_SHORT).show();
-                scheduledtimes.add("19:50");
-//                scheduledtimes.add("16:20");
-                SlotPicker.pickTime(MainActivity.this, dateSelected, scheduledtimes, 2);
-            }
+        next.setOnClickListener(v -> {
+            ArrayList<String> scheduledtimes = new ArrayList<String>();
+            Date d = Calendar.getInstance().getTime();
+            String dateSelected = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+            //this will indicate that slot is unavailable
+            scheduledtimes.add("19:50");
+            SlotPicker.pickTime(MainActivity.this, dateSelected, scheduledtimes, 2);
         });
     }
 
@@ -92,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         setActiveStep(steps, activeStepIndex);
                         steps[activeStepIndex].setSubtitle("Time Slot Booked: " + date_time);
                         activeStepIndex++;
-                        Toast.makeText(this, date_time, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Slot Booked Successfully", Toast.LENGTH_SHORT).show();
                     }
                     if (activeStepIndex == 4) {
                         next.setVisibility(View.INVISIBLE);
@@ -100,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
             if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
                 //do something
             }
         }
